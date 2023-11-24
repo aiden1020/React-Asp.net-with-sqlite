@@ -1,26 +1,91 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselCaption
+} from 'reactstrap';
 
-export class Home extends Component {
-  static displayName = Home.name;
+const items = [
+  {
+    src: 'https://cdn.discordapp.com/attachments/487854038977609730/1169945797748605000/21975240f2e2512c.png?ex=65573fee&is=6544caee&hm=6b69d8b7f3f59705733d31c6a5141a14e6b39a56b8d8fd731d7ce7f8a76cdab0&',
+    caption : "",
+    key: 1,
+  },
+  {
+    src: 'https://cdn.discordapp.com/attachments/487854038977609730/1169947457677955194/-2.png?ex=6557417a&is=6544cc7a&hm=da2c1d437e5062d8bac27df3ea949e5ecaa5c2f8f70c22e26d5470be3cdbaf37&',
+    caption : "",
+    key: 2,
+  },
+  {
+    src: 'https://cdn.discordapp.com/attachments/487854038977609730/1169948519327604786/-3.png?ex=65574277&is=6544cd77&hm=b12de88973096ccc390b1f566af3b829fea81e265f12cdb8b6c1630e171aa3a7&',
+    caption : "",
+    key: 3,
+  },
+];
 
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
-    );
-  }
+export default function Home() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const next = () => {
+    if (animating) return;
+    const nextIndex =
+      activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const previous = () => {
+    if (animating) return;
+    const nextIndex =
+      activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const goToIndex = (newIndex) => {
+    if (animating) return;
+    setActiveIndex(newIndex);
+  };
+
+  const slides = items.map((item) => (
+    <CarouselItem
+      onExiting={() => setAnimating(true)}
+      onExited={() => setAnimating(false)}
+      key={item.key}
+    >
+      <img src={item.src} alt={item.altText} />
+      <CarouselCaption
+        captionText={item.caption}
+        captionHeader={item.caption}
+      />
+    </CarouselItem>
+  ));
+
+  return (
+    <Carousel
+      activeIndex={activeIndex}
+      next={next}
+      previous={previous}
+    >
+      <CarouselIndicators
+        items={items}
+        activeIndex={activeIndex}
+        onClickHandler={goToIndex}
+      />
+      {slides}
+      <CarouselControl
+        direction="prev"
+        directionText="Previous"
+        onClickHandler={previous}
+      />
+      <CarouselControl
+        direction="next"
+        directionText="Next"
+        onClickHandler={next}
+      />
+    </Carousel>
+    
+  );
 }
+

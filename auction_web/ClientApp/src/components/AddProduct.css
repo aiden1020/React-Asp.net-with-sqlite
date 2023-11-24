@@ -1,0 +1,7 @@
+.form-container {
+    user-select: none;
+    width: 400px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }

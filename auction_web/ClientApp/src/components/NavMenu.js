@@ -1,47 +1,62 @@
-import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import React, { useState } from 'react';
+import {
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  Nav, 
+  DropdownItem
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import  LoginBoxLayout  from "./LoginBoxLayout" 
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+export default function NavMenu(){
+  const [collapsed, setCollapsed] = useState(true);
 
-  constructor (props) {
-    super(props);
+  const toggleNavbar = () => {
+    setCollapsed(!collapsed);
+  };
+  return (
+    <header>
+      <Navbar className="navbar-expand-sm NavMenu" container light>
+        <NavbarBrand tag={Link} to="/">BidHUB</NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <Nav className="ml-auto" navbar> 
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true
-    };
-  }
+          <ul className="navbar-nav flex-grow">
+            <NavItem>
+              <NavLink tag={Link} className="text-dark" to="/categories/car">汽車</NavLink>
+            </NavItem>
 
-  toggleNavbar () {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle className="text-dark" nav caret>電子產品</DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/mobile-phone" >手機/平板</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/earphone">耳機</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/computer-component">電腦配件</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
 
-  render() {
-    return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-          <NavbarBrand tag={Link} to="/">auction_web</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-            <ul className="navbar-nav flex-grow">
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-              </NavItem>
-            </ul>
-          </Collapse>
-        </Navbar>
-      </header>
-    );
-  }
-}
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle className="text-dark" nav caret>名牌精品</DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/wallet" >皮夾</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/packet">包包</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+
+            <NavItem>
+              <LoginBoxLayout />
+            </NavItem>
+          </ul>
+        </Nav>
+      </Navbar>
+    </header>
+  );
+};
+

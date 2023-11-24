@@ -9,10 +9,10 @@ html {
 }
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.NavMenu {
+  user-select: none;
+  background-color:aliceblue;
 }
