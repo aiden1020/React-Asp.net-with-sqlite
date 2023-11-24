@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:44441",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "/Users/aiden/github/auction_web/auction_web/ClientApp/",
+"MaxTimeoutInSeconds": "120"
+}
+}

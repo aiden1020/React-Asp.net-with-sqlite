@@ -37,7 +37,6 @@ export default function LoginBox({ handleShowRegister,handleClose,handlehaslogin
             .catch((error) => {
               console.error('Error:', error); 
             });
-        
         }
     
     return(
