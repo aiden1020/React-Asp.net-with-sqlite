@@ -26,6 +26,7 @@ namespace auction_web.Controllers
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName);
             if (existingUser != null ){
                 if(existingUser.Password == user.Password){ 
+                    Console.WriteLine(existingUser.UserId);
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.UserName)

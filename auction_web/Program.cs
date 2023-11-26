@@ -35,6 +35,7 @@ builder.Services.AddDbContext<AuctionDb>(options =>
 {
     options.UseSqlite("Data Source=database.db");  
 });
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

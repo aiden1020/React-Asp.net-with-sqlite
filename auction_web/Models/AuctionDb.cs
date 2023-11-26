@@ -9,6 +9,9 @@ namespace auction_web.Models
     public class AuctionDb : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+
         public string DbPath { get; }
         public AuctionDb(DbContextOptions<AuctionDb> options) : base(options)
         {
