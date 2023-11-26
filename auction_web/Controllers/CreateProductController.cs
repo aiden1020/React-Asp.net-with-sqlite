@@ -13,22 +13,26 @@ namespace auction_web.Controllers
     public class CreateProductController : ControllerBase
     {
         private readonly AuctionDb _context;
+        private IHostEnvironment _hostingEnvironment;
 
-        public CreateProductController(AuctionDb context)
+        public CreateProductController(AuctionDb context,IHostEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
         [Authorize]
         [HttpPost]
-        public  IActionResult  CreateProduct([FromForm] Product product)
+        public  IActionResult  CreateProduct([FromForm] Product product , [FromForm] List<IFormFile> images)
         {
+            
             if (ModelState.IsValid)
             {
-                return Ok("模型通過驗證，可以執行相應的操作。");
+                
+                return Ok();
             }
 
-            // 如果模型未通過驗證，返回包含錯誤信息的 BadRequest 響應
             return BadRequest(ModelState);
         }
+
     }
 }

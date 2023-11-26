@@ -95,7 +95,6 @@ export default function AddProduct() {
     }
     else{
       // If you need to keep the original Date object
-      console.log(typeof startDate); // This will be 'object' (Date)
       const authToken = localStorage.getItem("AuthToken");
       const formData = new FormData();
       formData.append('productName', productName);
@@ -106,14 +105,13 @@ export default function AddProduct() {
       formData.append('startDate', startDate.toISOString());
       formData.append('endDate', endDate.toISOString());
       itemData.forEach((item, index) => {
-        formData.append(`images[${index}]`, item.file);
-      });      
+        formData.append('images', item.file);
+    });
+    
       fetch('/api/createproduct', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`,
-
+          'Authorization': `Bearer ${authToken}`
         },
         body: formData, 
       })

@@ -22,6 +22,7 @@ namespace auction_web.Controllers
 
         [HttpPost]
         public async Task<IActionResult> LoginUser([FromBody] User user){
+
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName);
             if (existingUser != null ){
                 if(existingUser.Password == user.Password){ 
