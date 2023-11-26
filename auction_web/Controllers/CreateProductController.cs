@@ -8,6 +8,9 @@ using auction_web.Models;
 using Microsoft.AspNetCore.Routing.Constraints;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
 namespace auction_web.Controllers
 {
     [ApiController]
@@ -29,8 +32,10 @@ namespace auction_web.Controllers
             
             if (ModelState.IsValid)
             {   
-
-
+                string userName = User.Identity.Name;
+                var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == userName);
+                product.UserId = existingUser.UserId;
+                product.Owner = existingUser;
                 product.Images ??= new List<ProductImage>();
                 string path = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads"); 
                 if (!Directory.Exists(path))
@@ -46,8 +51,9 @@ namespace auction_web.Controllers
                     }
                     product.Images.Add(new ProductImage { ImagePath = filepath }); 
                 }
-                // _context.Products.Add(product);
-                // await _context.SaveChangesAsync();
+
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
                 return Ok();
             }
 
