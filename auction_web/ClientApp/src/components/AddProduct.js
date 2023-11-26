@@ -15,8 +15,10 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import moment from 'moment';
 
 export default function AddProduct() {
+  const [productName, setproductName] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [description, setDescription] = useState(null);
@@ -92,9 +94,44 @@ export default function AddProduct() {
       }
     }
     else{
-      alert("新增商品成功");
+      // If you need to keep the original Date object
+      console.log(typeof startDate); // This will be 'object' (Date)
+      const authToken = localStorage.getItem("AuthToken");
+      const formData = new FormData();
+      formData.append('productName', productName);
+      formData.append('price', parseInt(price, 10));
+      formData.append('description', description);
+      formData.append('category', selectedCategory);
+      formData.append('subCategory', selectedSubCategory);
+      formData.append('startDate', startDate.toISOString());
+      formData.append('endDate', endDate.toISOString());
+      itemData.forEach((item, index) => {
+        formData.append(`images[${index}]`, item.file);
+      });      
+      fetch('/api/createproduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`,
+
+        },
+        body: formData, 
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("新增商品成功");
+          } else {
+            response.text().then(text => {
+              alert(text);  
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     }  
   };
+
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -111,13 +148,14 @@ export default function AddProduct() {
     <div className='form-container'>
       <Stack justifyContent="center" alignItems="center" spacing={1}>
         <Typography variant="h5">新增拍賣品</Typography>
+        <TextField id="product-name" label="商品名稱" variant="standard"  fullWidth onChange={(event) =>setproductName(event.target.value)}/>
         <FormControl variant="standard" fullWidth>
+
           <InputLabel id="add-select-label">商品種類</InputLabel>
           <Select
             labelId="add-select-label"
             id="add-selector"
             value={selectedCategory}
-            label = '商品種類'
             onChange={handleCategoryChange}
           >
             <MenuItem value="汽車">汽車</MenuItem>
@@ -127,7 +165,7 @@ export default function AddProduct() {
           </FormControl>
           <FormControl variant="standard" fullWidth>
           {showSubCategoryOptions && (
-            <div>
+            <FormControl variant="standard" >
               <InputLabel id="sub-category-label">子商品種類</InputLabel>
               <Select
                 labelId="sub-category-label"
@@ -140,7 +178,7 @@ export default function AddProduct() {
                   </MenuItem>
                 ))}
               </Select>
-              </div>
+              </FormControl>
           )}
           </FormControl>
           <FormControl variant="standard" fullWidth>
@@ -151,8 +189,7 @@ export default function AddProduct() {
             id="price-input"
             InputProps={{ inputProps: { min: 0 } }} 
             variant="standard"
-            onChange={(event) =>setPrice(event.target.value)}
-            
+            onChange={(event) =>setPrice(parseInt(event.target.value, 10))}
           />          
           <TextField
             label="產品描述"
@@ -164,8 +201,6 @@ export default function AddProduct() {
 
           />
           </FormControl>
-
-
           <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
             上傳照片
             <VisuallyHiddenInput type="file"accept=".jpg, .png, .tif, .gif" onChange={handleImageChange}/>

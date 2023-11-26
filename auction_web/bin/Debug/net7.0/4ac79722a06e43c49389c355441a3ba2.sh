@@ -15,16 +15,16 @@ function list_child_processes () {
     fi;
 }
 
-ps 19847;
+ps 32568;
 while [ $? -eq 0 ];
 do
   sleep 1;
-  ps 19847 > /dev/null;
+  ps 32568 > /dev/null;
 done;
 
-for child in $(list_child_processes 19852);
+for child in $(list_child_processes 32573);
 do
   echo killing $child;
   kill -s KILL $child;
 done;
-rm /Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/14a9dc6b60534a7f8f42e782d422a6dd.sh;
+rm /Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/4ac79722a06e43c49389c355441a3ba2.sh;
