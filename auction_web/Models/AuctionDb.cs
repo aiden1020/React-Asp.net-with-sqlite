@@ -14,11 +14,22 @@ namespace auction_web.Models
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "auction_database.db");
+            DbPath = System.IO.Path.Join(path, "database.db");
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Products)
+                .WithOne(p => p.Owner)
+                .HasForeignKey(p => p.UserId);
 
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Images)
+                .WithOne(pi => pi.Product)
+                .HasForeignKey(pi => pi.ProductId);
+        }
     }
 
 }

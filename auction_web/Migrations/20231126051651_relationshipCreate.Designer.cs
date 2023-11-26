@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using auction_web.Models;
 
@@ -10,9 +11,11 @@ using auction_web.Models;
 namespace auction_web.Migrations
 {
     [DbContext(typeof(AuctionDb))]
-    partial class AuctionDbModelSnapshot : ModelSnapshot
+    [Migration("20231126051651_relationshipCreate")]
+    partial class relationshipCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");

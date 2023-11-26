@@ -15,6 +15,8 @@ namespace auction_web.Models
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
+        // 使用者擁有的商品列表
+        public ICollection<Product>? Products { get; set; }
 
     }
 }
