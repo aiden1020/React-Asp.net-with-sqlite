@@ -14,7 +14,7 @@ namespace auction_web.Models
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = "/Users/aiden/github/auction_web/auction_web/database.db";
+            DbPath = System.IO.Path.Join(path, "auction_database.db");
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
