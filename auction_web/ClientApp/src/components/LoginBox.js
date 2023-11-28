@@ -26,13 +26,22 @@ export default function LoginBox({ handleShowRegister,handleClose,handlehaslogin
                 handleClose();
                 handlehaslogined(username);
                 return response.json();
-              } else {
+              } else if(response.status === 409){
+                return response.text();
+              } 
+              else {
                 throw new Error('Login error');  
               }
+
             })
             .then((data) => {
-              const {token} =data;
-              localStorage.setItem("AuthToken",token)
+              if (data == "用戶名或密碼錯誤" || data == "用戶名不存在"){
+                alert(data)
+              }
+              else{
+                const {token} =data;
+                localStorage.setItem("AuthToken",token)
+            }
             })
             .catch((error) => {
               console.error('Error:', error); 

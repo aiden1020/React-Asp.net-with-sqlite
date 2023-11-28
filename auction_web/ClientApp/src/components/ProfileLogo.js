@@ -4,8 +4,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AddProductButton from './AddProductButton';
 import { Link } from 'react-router-dom';
+import SellIcon from '@mui/icons-material/Sell';
 
 export default function ProfileLogo({Username}) {
         const [anchorEl, setAnchorEl] = useState(null);
@@ -22,7 +22,16 @@ export default function ProfileLogo({Username}) {
         }
         return (
         <div>
-            <AddProductButton/>
+            <Button
+                startIcon={<SellIcon/>}
+                variant='outlined'
+                color = 'primary'
+                size="small"
+                component={Link} 
+                to="/addProduct"
+                >
+                新增拍賣品
+            </Button>
             <Button
                 aria-controls={open ? 'fade-menu' : undefined}
                 aria-haspopup="true"

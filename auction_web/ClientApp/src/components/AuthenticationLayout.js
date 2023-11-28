@@ -7,7 +7,7 @@ import RegisterBox from "./RegisterBox"
 import LoginIcon from '@mui/icons-material/Login';
 import ProfileLogo from './ProfileLogo';
 
-export default function LoginBoxLayout() {
+export default function AuthenticationLayout() {
   const [open, setOpen] =useState(false);
   const [haslogined, sethaslogined] = useState(false);
   const [showRegister, setShowRegister] = useState(false);

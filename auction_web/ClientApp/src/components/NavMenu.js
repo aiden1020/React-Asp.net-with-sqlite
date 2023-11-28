@@ -13,7 +13,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
-import  LoginBoxLayout  from "./LoginBoxLayout" 
+import  AuthenticationLayout  from "./AuthenticationLayout" 
 
 export default function NavMenu(){
   const [collapsed, setCollapsed] = useState(true);
@@ -51,7 +51,7 @@ export default function NavMenu(){
             </UncontrolledDropdown>
 
             <NavItem>
-              <LoginBoxLayout />
+              <AuthenticationLayout />
             </NavItem>
           </ul>
         </Nav>
