@@ -8,7 +8,6 @@ using System.Security.Claims;
 namespace auction_web.Controllers
 {
     [ApiController]
-    
     [Route("api/[controller]")]
     public class CheckAuthController : ControllerBase
     {

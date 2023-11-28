@@ -32,6 +32,7 @@ namespace auction_web.Controllers
             
             if (ModelState.IsValid)
             {   
+                
                 string userName = User.Identity.Name;
                 var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == userName);
                 product.UserId = existingUser.UserId;

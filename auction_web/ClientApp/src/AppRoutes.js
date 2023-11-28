@@ -1,5 +1,3 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
 import Home  from "./components/Home";
 import  Wallet   from "./components/brand/Wallet"
 import   Packet  from "./components/brand/Packet" 
@@ -8,46 +6,53 @@ import  Earphone  from "./components/electronic/Earphone"
 import  Computer  from "./components/electronic/Computer"
 import  Car  from "./components/car/Car" 
 import AddProduct from "./components/AddProduct"
+import ProfileInfo from "./components/ProfileInfo";
+
 const AppRoutes = [
   {
     index: true,
-    element: <Home />
-  },
-  {
-    path: '/counter',
-    element: <Counter />
-  },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
+    element: <Home />,
+    private: false
   },
   {
     path: '/categories/wallet',
-    element: <Wallet />
+    element: <Wallet />,
+    private: false
   },
   {
     path: '/categories/packet',
-    element: <Packet />
+    element: <Packet />,
+    private: false
   },
   {
     path: '/categories/mobile-phone',
-    element: <Phone />
+    element: <Phone />,
+    private: false
   },
   {
     path: '/categories/earphone',
-    element: <Earphone />
+    element: <Earphone />,
+    private: false
   },
   {
     path: '/categories/computer-component',
-    element: <Computer />
+    element: <Computer />,
+    private: false
   },
   {
     path: '/categories/car',
-    element: <Car />
+    element: <Car />,
+    private: false
   },
   {
     path: '/addProduct',
-    element: <AddProduct />
+    element: <AddProduct />,
+    private: true
+  },
+  {
+    path: '/profile',
+    element:<ProfileInfo/>,
+    private: true
   }
 ];
 
