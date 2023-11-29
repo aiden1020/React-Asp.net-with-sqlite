@@ -38,7 +38,7 @@ namespace auction_web.Controllers
                 product.UserId = existingUser.UserId;
                 product.Owner = existingUser;
                 product.Images ??= new List<ProductImage>();
-                string path = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads"); 
+                string path = Path.Combine(_hostingEnvironment.ContentRootPath, "ClientApp/public/uploads"); 
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -50,7 +50,8 @@ namespace auction_web.Controllers
                     {
                         await image.CopyToAsync(fileStream);
                     }
-                    product.Images.Add(new ProductImage { ImagePath = filepath }); 
+                    string relative_path = Path.Combine("../../uploads/",image.FileName);
+                    product.Images.Add(new ProductImage { ImagePath = relative_path }); 
                 }
 
                 _context.Products.Add(product);

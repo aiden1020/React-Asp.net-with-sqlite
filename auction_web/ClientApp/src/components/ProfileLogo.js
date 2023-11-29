@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import React, { useState , useEffect} from 'react';
+import React, { useState} from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
@@ -52,6 +52,7 @@ export default function ProfileLogo({Username}) {
                 TransitionComponent={Fade}
             >
                 <MenuItem component={Link} to= "/profile" onClick={handleClose}>個人資料</MenuItem>
+                <MenuItem component={Link} to= "/personal-item" onClick={handleClose}>我的拍賣品</MenuItem>
                 <MenuItem onClick={handleLogout}>登出</MenuItem>
             </Menu>
         </div>

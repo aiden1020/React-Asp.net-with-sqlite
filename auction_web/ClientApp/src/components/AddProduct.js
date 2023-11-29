@@ -11,11 +11,9 @@ import dayjs from 'dayjs';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import PostAddIcon from '@mui/icons-material/PostAdd';
-import moment from 'moment';
 
 export default function AddProduct() {
   const [productName, setproductName] = useState(null);
@@ -201,7 +199,7 @@ export default function AddProduct() {
           </FormControl>
           <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
             上傳照片
-            <VisuallyHiddenInput type="file"accept=".jpg, .png, .tif, .gif" onChange={handleImageChange}/>
+            <VisuallyHiddenInput type="file"accept=".jpg, .png, .tif, .gif, .jpeg" onChange={handleImageChange}/>
           </Button>
           {itemData[0] && (
             <ImageList sx={{ width: 400, height: 400 }}>
