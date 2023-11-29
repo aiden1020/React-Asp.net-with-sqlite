@@ -1,14 +1,10 @@
 import Home  from "./components/Home";
-import  Wallet   from "./components/brand/Wallet"
-import   Packet  from "./components/brand/Packet" 
-import  Phone  from "./components/electronic/Phone"
-import  Earphone  from "./components/electronic/Earphone" 
-import  Computer  from "./components/electronic/Computer"
-import  Car  from "./components/car/Car" 
 import AddProduct from "./components/AddProduct"
 import ProfileInfo from "./components/ProfileInfo";
 import PersonalItem from "./components/PersonalItem";
 import ProductDetail from "./components/ProductDetail";
+import CategoryProduct from "./components/CategoryProduct"
+
 const AppRoutes = [
   {
     index: true,
@@ -16,33 +12,8 @@ const AppRoutes = [
     private: false
   },
   {
-    path: '/categories/wallet',
-    element: <Wallet />,
-    private: false
-  },
-  {
-    path: '/categories/packet',
-    element: <Packet />,
-    private: false
-  },
-  {
-    path: '/categories/mobile-phone',
-    element: <Phone />,
-    private: false
-  },
-  {
-    path: '/categories/earphone',
-    element: <Earphone />,
-    private: false
-  },
-  {
-    path: '/categories/computer-component',
-    element: <Computer />,
-    private: false
-  },
-  {
-    path: '/categories/car',
-    element: <Car />,
+    path: '/categories/:category',
+    element: <CategoryProduct />,
     private: false
   },
   {

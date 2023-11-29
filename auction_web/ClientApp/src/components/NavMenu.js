@@ -29,10 +29,13 @@ export default function NavMenu(){
         <Nav className="ml-auto" navbar> 
 
           <ul className="navbar-nav flex-grow">
-            <NavItem>
-              <NavLink tag={Link} className="text-dark" to="/categories/car">汽車</NavLink>
-            </NavItem>
-
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle className="text-dark" nav caret>汽車</DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/domestic-car" >國產車</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/import-car">進口車</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle className="text-dark" nav caret>電子產品</DropdownToggle>
               <DropdownMenu right>
