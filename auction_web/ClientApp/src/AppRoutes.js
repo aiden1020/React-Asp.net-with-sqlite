@@ -3,7 +3,7 @@ import AddProduct from "./components/AddProduct"
 import ProfileInfo from "./components/ProfileInfo";
 import PersonalItem from "./components/PersonalItem";
 import ProductDetail from "./components/ProductDetail";
-import CategoryProduct from "./components/CategoryProduct"
+import CategoryItem from "./components/CategoryItem"
 
 const AppRoutes = [
   {
@@ -13,7 +13,7 @@ const AppRoutes = [
   },
   {
     path: '/categories/:category',
-    element: <CategoryProduct />,
+    element: <CategoryItem />,
     private: false
   },
   {
@@ -32,9 +32,9 @@ const AppRoutes = [
     private: true
   },
   {
-    path: '/personal-item/details/:productId',
+    path: '/personal-item/details/:productId/:isOwner',
     element:<ProductDetail/>,
-    private: true
+    private: false
   },
 ];
 

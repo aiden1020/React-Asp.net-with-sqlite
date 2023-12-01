@@ -116,6 +116,8 @@ export default function AddProduct() {
         .then((response) => {
           if (response.ok) {
             alert("新增商品成功");
+            window.location.href = "/";
+
           } else {
             response.text().then(text => {
               alert(text);  

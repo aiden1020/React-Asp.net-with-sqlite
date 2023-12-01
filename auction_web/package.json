@@ -9,6 +9,7 @@
     "dayjs": "^1.11.10",
     "moment": "^2.29.4",
     "react-confirm-alert": "^3.0.6",
+    "react-material-ui-carousel": "^3.4.2",
     "universal-cookie": "^6.1.1"
   }
 }

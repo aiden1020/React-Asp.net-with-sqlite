@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using auction_web.Models;
 
@@ -10,9 +11,11 @@ using auction_web.Models;
 namespace auction_web.Migrations
 {
     [DbContext(typeof(AuctionDb))]
-    partial class AuctionDbModelSnapshot : ModelSnapshot
+    [Migration("20231130032620_update_Products_new_prop")]
+    partial class update_Products_new_prop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -21,9 +24,6 @@ namespace auction_web.Migrations
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("BidUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")

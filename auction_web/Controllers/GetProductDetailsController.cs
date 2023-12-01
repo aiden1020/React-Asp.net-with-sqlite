@@ -20,60 +20,115 @@ namespace auction_web.Controllers
         {
             _context = context;
         }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetProductById(int id)
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetProductsByCurrentUser()
         {
-            var product = await _context.Products
-                .Include(p => p.Images) // 如果需要提取商品的照片，請包含這個操作
-                .FirstOrDefaultAsync(p => p.ProductId == id);
+            string username = User.Identity.Name;
 
-            if (product == null)
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+
+            if (currentUser == null)
             {
-                return NotFound();
+                return NotFound("Current user not found");
             }
 
-            return Ok(new {
-                productName = product.ProductName,
-                description= product.Description,
-                start_date = product.StartDate,
-                end_date =product.EndDate,
+            var products = await _context.Products
+                .Where(p => p.UserId == currentUser.UserId)
+                .Include(p => p.Images) // 如果需要提取商品的照片，請包含這個操作
+                .Include(p => p.Owner)
+
+                .ToListAsync();
+
+            if (products == null || products.Count == 0)
+            {
+                return NotFound("No products found for the current user");
+            }
+
+            var productsResponse = products.Select(p => new
+            {
+                productId = p.ProductId,
+                productName = p.ProductName,
+                description = p.Description,
+                start_date = p.StartDate,
+                end_date = p.EndDate,
+                image = p.Images.Select(img => img.ImagePath).ToList(),
+                starting_price = p.Price,
+                owner_name = p.Owner.UserName,
+                category = p.Category,
+                subcategory =p.SubCategory,
+                current_highest_price = p.HighestBidPrice,
             });
+
+            return Ok(productsResponse);
         }
-    [Authorize]
-    [HttpGet]
-    public async Task<IActionResult> GetProductsByCurrentUser()
-    {
-        string username = User.Identity.Name;
-
-        var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
-
-        if (currentUser == null)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductsById(int id)
         {
-            return NotFound("Current user not found");
+            var productsById = await _context.Products
+                .Where(p => p.ProductId == id)
+                .Include(p => p.Images)
+                .Include(p => p.Owner)
+                .ToListAsync();
+
+            if (productsById == null)
+            {
+                return NotFound($"No products found for category");
+            }
+
+            var productsResponse = productsById.Select(p => new
+            {
+                productId = p.ProductId,
+                productName = p.ProductName,
+                description = p.Description,
+                start_date = p.StartDate,
+                end_date = p.EndDate,
+                image = p.Images.Select(img => img.ImagePath).ToList(),
+                starting_price = p.Price,
+                owner_name = p.Owner.UserName,
+                category = p.Category,
+                subcategory =p.SubCategory,
+                current_highest_price = p.HighestBidPrice,
+
+            });
+
+            return Ok(productsResponse);
         }
 
-        var products = await _context.Products
-            .Where(p => p.UserId == currentUser.UserId)
-            .Include(p => p.Images) // 如果需要提取商品的照片，請包含這個操作
-            .ToListAsync();
-
-        if (products == null || products.Count == 0)
+        [HttpGet("category/{category}")]
+        public async Task<IActionResult> GetProductsByCategory(string category)
         {
-            return NotFound("No products found for the current user");
+            var productsByCategory = await _context.Products
+                .Where(p => p.SubCategory == category)
+                .Where(p => p.StartDate <= DateTime.Now)
+                .Where(p => p.EndDate >= DateTime.Now)
+                .Include(p => p.Images)
+                .Include(p => p.Owner)
+                .ToListAsync();
+
+            if (productsByCategory == null || productsByCategory.Count == 0)
+            {
+                return NotFound($"No products found for category");
+            }
+
+            var productsResponse = productsByCategory.Select(p => new
+            {
+                productId = p.ProductId,
+                productName = p.ProductName,
+                description = p.Description,
+                start_date = p.StartDate,
+                end_date = p.EndDate,
+                image = p.Images.Select(img => img.ImagePath).ToList(),
+                starting_price = p.Price,
+                owner_name = p.Owner.UserName,
+                category = p.Category,
+                subcategory =p.SubCategory,
+                current_highest_price = p.HighestBidPrice,
+
+            });
+
+            return Ok(productsResponse);
         }
-
-        var productsResponse = products.Select(p => new
-        {
-            productId = p.ProductId,
-            productName = p.ProductName,
-            description = p.Description,
-            start_date = p.StartDate,
-            end_date = p.EndDate,
-            image = p.Images.Select(img => img.ImagePath).ToList()
-        });
-
-        return Ok(productsResponse);
-    }
 
 
     }

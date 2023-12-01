@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using auction_web.Models;
 
@@ -10,9 +11,11 @@ using auction_web.Models;
 namespace auction_web.Migrations
 {
     [DbContext(typeof(AuctionDb))]
-    partial class AuctionDbModelSnapshot : ModelSnapshot
+    [Migration("20231201043642_new_relation_in_Products")]
+    partial class new_relation_in_Products
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -23,7 +26,7 @@ namespace auction_web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("BidUserId")
+                    b.Property<int>("BidUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
@@ -54,6 +57,8 @@ namespace auction_web.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ProductId");
+
+                    b.HasIndex("BidUserId");
 
                     b.HasIndex("UserId");
 
@@ -110,11 +115,19 @@ namespace auction_web.Migrations
 
             modelBuilder.Entity("auction_web.Models.Product", b =>
                 {
+                    b.HasOne("auction_web.Models.User", "BidUser")
+                        .WithMany()
+                        .HasForeignKey("BidUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("auction_web.Models.User", "Owner")
                         .WithMany("Products")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BidUser");
 
                     b.Navigation("Owner");
                 });

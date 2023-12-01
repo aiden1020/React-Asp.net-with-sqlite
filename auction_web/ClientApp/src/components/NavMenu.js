@@ -4,7 +4,6 @@ import {
   NavbarToggler,
   NavbarBrand,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -32,24 +31,24 @@ export default function NavMenu(){
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle className="text-dark" nav caret>汽車</DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem tag={Link} className="text-dark" to="/categories/domestic-car" >國產車</DropdownItem>
-                <DropdownItem tag={Link} className="text-dark" to="/categories/import-car">進口車</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/國產車" >國產車</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/進口車">進口車</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle className="text-dark" nav caret>電子產品</DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem tag={Link} className="text-dark" to="/categories/mobile-phone" >手機/平板</DropdownItem>
-                <DropdownItem tag={Link} className="text-dark" to="/categories/earphone">耳機</DropdownItem>
-                <DropdownItem tag={Link} className="text-dark" to="/categories/computer-component">電腦配件</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/手機" >手機</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/耳機">耳機</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/電腦配件">電腦配件</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
 
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle className="text-dark" nav caret>名牌精品</DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem tag={Link} className="text-dark" to="/categories/wallet" >皮夾</DropdownItem>
-                <DropdownItem tag={Link} className="text-dark" to="/categories/packet">包包</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/皮夾" >皮夾</DropdownItem>
+                <DropdownItem tag={Link} className="text-dark" to="/categories/包包">包包</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
 

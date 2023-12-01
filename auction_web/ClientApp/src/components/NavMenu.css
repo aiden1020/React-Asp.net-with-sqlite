@@ -16,3 +16,10 @@ html {
   user-select: none;
   background-color:aliceblue;
 }
+.center-image{
+  display:flex;
+  justify-content:center; /* horizontally center */
+  align-items:center;    /* vertically center */
+  height:300px;
+  width:300px;
+}
