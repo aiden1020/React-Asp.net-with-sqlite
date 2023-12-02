@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack'; 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-export default function ProfileInfo() {
+const ProfileInfo = () => {
     const [userInfo, setUserInfo] = useState({
         username: '',
         email: '',
@@ -56,3 +56,4 @@ export default function ProfileInfo() {
     );
 
 }
+export default ProfileInfo;

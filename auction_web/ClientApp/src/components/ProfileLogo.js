@@ -7,7 +7,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
 import SellIcon from '@mui/icons-material/Sell';
 
-export default function ProfileLogo({Username}) {
+const ProfileLogo = ({Username}) => {
         const [anchorEl, setAnchorEl] = useState(null);
         const open = Boolean(anchorEl);
         const handleClick = (event) => {
@@ -58,3 +58,4 @@ export default function ProfileLogo({Username}) {
         </div>
     )
 }
+export default ProfileLogo;

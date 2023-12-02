@@ -8,6 +8,10 @@ namespace auction_web.Models
     public class Product
     {
         public int ProductId { get; set; }
+        public int? BidUserId { get; set; }
+
+        public User? BidUser { get; set; }
+
         public string? ProductName { get; set; }
         public int? Price { get; set; }
         public int? HighestBidPrice { get; set; }
@@ -21,7 +25,6 @@ namespace auction_web.Models
         // 商品的擁有者
         public int UserId { get; set; }
         public User? Owner { get; set; }
-        public int BidUserId { get; set; }
-        public User? BidUser { get; set; }
+
     }
 }

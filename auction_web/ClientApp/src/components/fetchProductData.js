@@ -1,4 +1,5 @@
 export const fetchProductData = async ( URL) => {    
+
     try {
         const authToken = localStorage.getItem("AuthToken");
 
@@ -10,7 +11,14 @@ export const fetchProductData = async ( URL) => {
         });
 
         if (!response.ok) {
-            throw new Error('api failed');
+            if(response.status === 404){
+                return {
+                    notFound: true,
+                  };
+            }
+            else{
+                throw new Error('api failed');
+            }
         }
 
         const data = await response.json();
@@ -22,6 +30,7 @@ export const fetchProductData = async ( URL) => {
             const days_left = `${daysDifference}天 ${hoursDifference}小時`;
 
             return {
+                notFound:false,
                 productId: element.productId,
                 productName: element.productName,
                 description: element.description,
@@ -33,7 +42,9 @@ export const fetchProductData = async ( URL) => {
                 owner_name :element.owner_name,
                 category: element.category,
                 subcategory:element.subcategory,
-                current_highest_price :element.current_highest_price
+                current_highest_price :element.current_highest_price,
+                biduser_id :element.biduser_id,
+                biduser_name : element.biduser_name,
             };
         });
         return updatedProducts;

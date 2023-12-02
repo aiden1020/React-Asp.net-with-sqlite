@@ -11,8 +11,8 @@ using auction_web.Models;
 namespace auction_web.Migrations
 {
     [DbContext(typeof(AuctionDb))]
-    [Migration("20231201043642_new_relation_in_Products")]
-    partial class new_relation_in_Products
+    [Migration("20231201061355_add_BidUser_relationship")]
+    partial class add_BidUser_relationship
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace auction_web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BidUserId")
+                    b.Property<int?>("BidUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
@@ -117,9 +117,7 @@ namespace auction_web.Migrations
                 {
                     b.HasOne("auction_web.Models.User", "BidUser")
                         .WithMany()
-                        .HasForeignKey("BidUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BidUserId");
 
                     b.HasOne("auction_web.Models.User", "Owner")
                         .WithMany("Products")

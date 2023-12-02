@@ -69,6 +69,8 @@ namespace auction_web.Controllers
                 .Where(p => p.ProductId == id)
                 .Include(p => p.Images)
                 .Include(p => p.Owner)
+                .Include(p => p.BidUser)
+
                 .ToListAsync();
 
             if (productsById == null)
@@ -89,7 +91,8 @@ namespace auction_web.Controllers
                 category = p.Category,
                 subcategory =p.SubCategory,
                 current_highest_price = p.HighestBidPrice,
-
+                biduser_id = p.BidUserId,
+                biduser_name = p.BidUser?.UserName
             });
 
             return Ok(productsResponse);

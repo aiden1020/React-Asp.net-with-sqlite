@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { fetchProductData } from './fetchProductData';
 
-function PersonalItem() {
+const PersonalItem = () =>{
     const [productinfo, setProductinfo] = useState([]);
     useEffect(() => {
         const fetchData = async () => {

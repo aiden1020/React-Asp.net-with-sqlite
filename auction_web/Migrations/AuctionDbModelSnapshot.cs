@@ -55,6 +55,8 @@ namespace auction_web.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("BidUserId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Products");
@@ -110,11 +112,17 @@ namespace auction_web.Migrations
 
             modelBuilder.Entity("auction_web.Models.Product", b =>
                 {
+                    b.HasOne("auction_web.Models.User", "BidUser")
+                        .WithMany()
+                        .HasForeignKey("BidUserId");
+
                     b.HasOne("auction_web.Models.User", "Owner")
                         .WithMany("Products")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BidUser");
 
                     b.Navigation("Owner");
                 });

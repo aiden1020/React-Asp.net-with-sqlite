@@ -15,7 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 
-export default function AddProduct() {
+const AddProduct = () => {
   const [productName, setproductName] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
@@ -254,3 +254,4 @@ export default function AddProduct() {
     </div>
   );
 }
+export default AddProduct;

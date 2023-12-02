@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import  AuthenticationLayout  from "./AuthenticationLayout" 
 
-export default function NavMenu(){
+const NavMenu = ()=>{
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => {
@@ -61,4 +61,5 @@ export default function NavMenu(){
     </header>
   );
 };
+export default  NavMenu;
 

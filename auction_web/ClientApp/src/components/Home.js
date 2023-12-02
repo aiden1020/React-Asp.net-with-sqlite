@@ -25,7 +25,7 @@ const items = [
   },
 ];
 
-export default function Home() {
+const Home = () =>{
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -88,4 +88,5 @@ export default function Home() {
     
   );
 }
+export default Home;
 

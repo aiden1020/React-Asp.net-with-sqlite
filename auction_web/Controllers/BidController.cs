@@ -28,11 +28,13 @@ namespace auction_web.Controllers
             {
                 return NotFound($"No products found for product id");
             }
-            if (product.HighestBidPrice == null || bidPrice>product.HighestBidPrice){
-                string username = User.Identity.Name;
+            string username = User.Identity.Name;
 
-                var BidUser = await _context.Users.FirstOrDefaultAsync(u=>u.UserName == username);
+            var BidUser = await _context.Users.FirstOrDefaultAsync(u=>u.UserName == username);
+            if ((product.HighestBidPrice == null || bidPrice>product.HighestBidPrice) && BidUser.UserId!=product.UserId){
 
+                product.BidUserId = BidUser.UserId;
+                product.BidUser = BidUser;
                 product.HighestBidPrice = bidPrice;
 
                 try
@@ -48,6 +50,31 @@ namespace auction_web.Controllers
             else
             {
                 return BadRequest("Bid Price is less than or equal to the current highest price.");
+            }
+        }
+        [Authorize]
+        [HttpPost("{id}")]
+        public async Task<IActionResult> EarlyEnd(int id){
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id);
+            if (product == null)
+            {
+                return NotFound($"No products found for product id");
+            }
+            if(product.EndDate> DateTime.Now){
+                product.EndDate =  DateTime.Now;
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return Ok("Update EndDate");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return Conflict("Concurrency conflict. Please try again.");
+                }
+            }
+            else
+            {
+                return BadRequest("Product is end");
             }
         }
     }
