@@ -71,8 +71,10 @@
 請確保相關套件已安裝，並且設定文件中的值是正確的，以確保 BidHUB 拍賣網站正確運行。
 
 ## 介面
-![Alt text](<Screenshot 2023-12-04 at 00.07.16.png>)
-![Alt text](<Screenshot 2023-12-04 at 00.08.55.png>)
-![Alt text](image.png)
-![Alt text](image-1.png)
-![Alt text](Images/image-2.png)
+![!\[Alt text\](Images/image-2.png)](Images/image-1.png) 
+![!\[Alt text\](Images/image-2.png)](Images/image-2.png) 
+![!\[Alt text\](Images/image-2.png)](Images/image.png) 
+![!\[Alt text\](Images/image-2.png)](<Images/Screenshot 2023-12-04 at 00.07.16.png>)
+![!\[Alt text\](Images/image-2.png)](<Images/Screenshot 2023-12-04 at 00.08.55.png>) 
+![!\[Alt text\](Images/image-2.png)](<Images/Screenshot 2023-12-04 at 00.09.27.png>) 
+![!\[Alt text\](Images/image-2.png)](<Images/Screenshot 2023-12-04 at 00.09.53.png>)
