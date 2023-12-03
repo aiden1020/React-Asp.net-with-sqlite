@@ -4,7 +4,7 @@ import ProfileInfo from "./components/ProfileInfo";
 import PersonalItem from "./components/PersonalItem";
 import ProductDetail from "./components/ProductDetail";
 import CategoryItem from "./components/CategoryItem"
-
+import EmailForm from "./components/EmailForm";
 const AppRoutes = [
   {
     index: true,
@@ -34,6 +34,11 @@ const AppRoutes = [
   {
     path: '/personal-item/details/:productId/:isOwner',
     element:<ProductDetail/>,
+    private: false
+  },
+  {
+    path: '/email',
+    element:<EmailForm/>,
     private: false
   },
 ];

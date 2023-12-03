@@ -26,5 +26,7 @@ namespace auction_web.Models
         public int UserId { get; set; }
         public User? Owner { get; set; }
 
+        public bool IsSentEmail { get; set; }
+
     }
 }

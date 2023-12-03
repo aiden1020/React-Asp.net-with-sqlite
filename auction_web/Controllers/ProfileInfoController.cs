@@ -1,10 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using auction_web.Models;
 using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace auction_web.Controllers

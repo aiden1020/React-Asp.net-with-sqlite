@@ -38,6 +38,9 @@ namespace auction_web.Migrations
                     b.Property<int?>("HighestBidPrice")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("IsSentEmail")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("Price")
                         .HasColumnType("INTEGER");
 

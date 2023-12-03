@@ -77,3 +77,8 @@
 /Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
 /Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/System.Security.Permissions.dll
+/Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/BouncyCastle.Cryptography.dll
+/Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/MailKit.dll
+/Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/MimeKit.dll
+/Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/System.Security.Cryptography.Pkcs.dll
+/Users/aiden/github/auction_web/auction_web/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Security.Cryptography.Pkcs.dll

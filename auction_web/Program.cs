@@ -3,10 +3,10 @@ using auction_web.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using auction_web.Services.EmailService;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 // Add services to the container.
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -36,6 +36,10 @@ builder.Services.AddDbContext<AuctionDb>(options =>
     options.UseSqlite("Data Source=database.db");  
 });
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddHostedService<TimerHostedService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

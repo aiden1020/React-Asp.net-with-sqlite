@@ -28,7 +28,7 @@ export const fetchProductData = async ( URL) => {
             const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
             const hoursDifference = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const days_left = `${daysDifference}天 ${hoursDifference}小時`;
-
+            
             return {
                 notFound:false,
                 productId: element.productId,

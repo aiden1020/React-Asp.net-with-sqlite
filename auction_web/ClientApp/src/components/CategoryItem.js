@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { fetchProductData } from './fetchProductData';
-export default function CategoryItem() {
+const CategoryItem = () => {
     const { category } = useParams();
     const [productinfo, setProductinfo] = useState([]);
     const [notFound, setNotFound] = useState(false);
@@ -56,3 +56,4 @@ export default function CategoryItem() {
     return notFound === true ? CategoryItemNotFound() : showCategoryItem();
 }
 
+export default CategoryItem;

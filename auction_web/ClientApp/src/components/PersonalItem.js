@@ -7,12 +7,16 @@ import { fetchProductData } from './fetchProductData';
 
 const PersonalItem = () =>{
     const [productinfo, setProductinfo] = useState([]);
+    const [notFound, setNotFound] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
               var api_URL = '/api/getproductdetails';
               const updatedProducts = await fetchProductData(api_URL);
               setProductinfo(updatedProducts);
+              setNotFound(updatedProducts.notFound);
+
             } catch (error) {
               console.error('Error in useEffect:', error);
             }
@@ -20,9 +24,8 @@ const PersonalItem = () =>{
       
           fetchData();
     }, []);
-
-    return (
-        
+    const showPersonalItem = ()=>{
+        return(          
         <Box sx={{ flexGrow: 1 }}>
         <Typography variant='h6'>我的拍賣品</Typography>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -47,8 +50,15 @@ const PersonalItem = () =>{
         </Grid>
 
         </Box>
+        )
+    }
+    const PersonalItemNotFound = () =>{
+        return(
+            <Typography variant='h6'>目前還沒有商品喔～ 快點來新增拍賣品吧～ </Typography>
+        );
+    }
+    return notFound === true ? PersonalItemNotFound(): showPersonalItem() ;
 
-    );
 }
 
 export default PersonalItem;
