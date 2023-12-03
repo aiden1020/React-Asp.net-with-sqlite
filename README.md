@@ -1,6 +1,6 @@
 # BidHUB 拍賣網站
 
-歡迎使用 BidHUB 拍賣網站！本網站提供一個方便的拍賣平台，讓用戶可以輕鬆地註冊、登入，新增拍賣品，進行投標等操作。以下是一些主要功能和相關設定的說明：
+以下是一些主要功能和相關設定的說明：
 
 ## 功能特點
 
@@ -70,3 +70,9 @@
 
 請確保相關套件已安裝，並且設定文件中的值是正確的，以確保 BidHUB 拍賣網站正確運行。
 
+## 介面
+![Alt text](<Screenshot 2023-12-04 at 00.07.16.png>)
+![Alt text](<Screenshot 2023-12-04 at 00.08.55.png>)
+![Alt text](image.png)
+![Alt text](image-1.png)
+![Alt text](Images/image-2.png)
